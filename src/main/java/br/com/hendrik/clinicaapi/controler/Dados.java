@@ -3,14 +3,17 @@ package br.com.hendrik.clinicaapi.controler;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.hendrik.clinicaapi.model.Cliente;
+import br.com.hendrik.clinicaapi.repository.DadosRepository;
 
 /*
  * Em nosso projeto iremos utilizar algumas anotações (Annotations) que 
@@ -23,47 +26,20 @@ import br.com.hendrik.clinicaapi.model.Cliente;
 
 
 @RestController
-@RequestMapping
+@RequestMapping("/")
 public class Dados {
-
-	@GetMapping
-	public String incial() {
-		return "Olá, você está na página inicial do projeto";
-	}
 	
-	@GetMapping("/cliente")
-	public String cliente() {
-		return "Ednaldo Pereira";
-	}
-	@GetMapping("/clientes")
-	public List<Cliente> clientes() {
-		List<Cliente> lst = new ArrayList<Cliente>();
-		Cliente c1 = new Cliente();
-		Cliente c2 = new Cliente();
-		
-		c1.setNome("Daireb");
-		c2.setNome("Madao");
-		
-		lst.add(c1);
-		lst.add(c2);
-		
-		return lst;
-	}
-	@PostMapping
-	public String cadastro() {
-		return "Cadastro Inicializado";
-	}
+	@Autowired
+	private DadosRepository dr;
 	
-	@PutMapping("/atualizar")
-	public String atualizar() {
-		return "Dados Atualizados";
+	@PostMapping("/cad")
+	public String cadastro(@RequestBody Cliente cliente) {
+		dr.save(cliente);
+		return "Cliente cadastrado com sucesso";
 	}
-	
-	@DeleteMapping("/apagar")
-	public String apagar() {
-		return " Dados apagados";
+	public List<Cliente> cliente(){
+		return dr.findAll();
 	}
-	
 }
 
 
