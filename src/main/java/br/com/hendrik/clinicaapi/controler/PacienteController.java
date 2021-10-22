@@ -51,7 +51,7 @@ public class PacienteController {
 	@DeleteMapping("/apagar/{id}")
 	public String apagar(@PathVariable Long id) {
 	pr.deleteById(id);
-	return "Paciente Negado";
+	return "Paciente Apagado";
 		
 	}
 }
