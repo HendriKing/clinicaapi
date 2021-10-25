@@ -25,15 +25,16 @@ public class Agenda {
 	private Date dataConsulta;
 	
 	@Column
-	private Date horaConsulta;
+	private String horaConsulta;
 	
 	@Column
 	private String especialidade;
 
+
 	public Agenda() {
 	}
 
-	public Agenda(Long idAgenda, Long idPaciente, Long idMedico, Date dataConsulta, Date horaConsulta,
+	public Agenda(Long idAgenda, Long idPaciente, Long idMedico, Date dataConsulta, String horaConsulta,
 			String especialidade) {
 		this.idAgenda = idAgenda;
 		this.idPaciente = idPaciente;
@@ -75,11 +76,11 @@ public class Agenda {
 		this.dataConsulta = dataConsulta;
 	}
 
-	public Date getHoraConsulta() {
+	public String getHoraConsulta() {
 		return horaConsulta;
 	}
 
-	public void setHoraConsulta(Date horaConsulta) {
+	public void setHoraConsulta(String horaConsulta) {
 		this.horaConsulta = horaConsulta;
 	}
 
@@ -90,7 +91,4 @@ public class Agenda {
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
-	
-	
-	
 }
